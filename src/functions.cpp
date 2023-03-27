@@ -157,6 +157,87 @@ int edit_bin(unsigned char* bin, long filesize) {
     return 0;
 }
 
+int insert_bin(unsigned char* bin, unsigned char* bin2, long filesize, long filesize2 ) {
+    for ( int n=0; n<17; n++ ) {
+        if ( n>0 && n<17 ) printf(" ");
+        printf("%02X", (unsigned char)bin[n]);
+    }
+    printf("\n");
+
+    uint16_t size_x = *(uint16_t*)(bin + 1);
+    uint16_t size_y = *(uint16_t*)(bin + 3);
+
+    printf("size_x=%4d (%04X)\nsize_y=%4d (%04X)\n", size_x, size_x, size_y, size_y);
+
+    int bytes=17 + 5 * size_x * size_y;
+
+    if ( filesize != bytes ) {
+
+        printf( "bin=( %d x %d ) x 5 + 17 = %d bytes. FAIL!!!\n", size_x, size_y, bytes );
+
+        printf( "Filesize does not match map resolution.\n" );
+
+        return 0;
+
+    } else {
+
+        printf( "bin=( %d x %d ) x 5 + 17 = %d bytes. OK!\n", size_x, size_y, bytes );
+
+    }
+
+    for ( int n=0; n<17; n++ ) {
+        if ( n>0 && n<17 ) printf(" ");
+        printf("%02X", (unsigned char)bin2[n]);
+    }
+    printf("\n");
+
+    uint16_t size_x2 = *(uint16_t*)(bin2 + 1);
+    uint16_t size_y2 = *(uint16_t*)(bin2 + 3);
+
+    printf("size_x=%4d (%04X)\nsize_y=%4d (%04X)\n", size_x2, size_x2, size_y2, size_y2);
+
+    int bytes2=17 + 5 * size_x2 * size_y2;
+
+    if ( filesize2 != bytes2 ) {
+
+        printf( "bin=( %d x %d ) x 5 + 17 = %d bytes. FAIL!!!\n", size_x2, size_y2, bytes2 );
+
+        printf( "Filesize does not match map resolution.\n" );
+
+        return 0;
+
+    } else {
+
+        printf( "bin=( %d x %d ) x 5 + 17 = %d bytes. OK!\n", size_x2, size_y2, bytes2 );
+
+    }
+
+    int offset;
+    int offset2;
+
+    for (int yy = 0; yy < size_y2; yy++ ) {
+        for ( int xx = 0; xx < size_x2; xx++ ) {
+
+            offset  = yy + size_y * xx;
+            offset2 = yy + size_y2 * xx;
+
+            if ( xx < size_x && yy < size_y ) {
+                memcpy( bin  + 17 + offset  * 3,
+                        bin2 + 17 + offset2 * 3,
+                        3
+                );
+                memcpy( bin  + 17 + offset  * 2 + ( size_x  * size_y  ) * 3,
+                        bin2 + 17 + offset2 * 2 + ( size_x2 * size_y2 ) * 3,
+                        2
+                );
+            }
+        }
+    }
+
+
+    return 1;
+}
+
 unsigned char* resize_bin(unsigned char* bin, long filesize, int new_x, int new_y ) {
 //    printf( "bin=0x%p filesize=%ld\n", bin, filesize );
     for ( int n=0; n<17; n++ ) {
@@ -224,7 +305,6 @@ unsigned char* resize_bin(unsigned char* bin, long filesize, int new_x, int new_
 
     printf(" new_x=%4d (%04X)\n new_y=%4d (%04X)\n", new_x, new_x, new_y, new_y);
 
-
     int offset;
     int offset2;
     for (int yy = 0; yy < new_y; yy++ ) {
@@ -239,7 +319,7 @@ unsigned char* resize_bin(unsigned char* bin, long filesize, int new_x, int new_
                 );
                 memcpy( mem + 17 + offset2 * 2 + ( new_x  * new_y  ) * 3,
                         bin + 17 + offset  * 2 + ( size_x * size_y ) * 3,
-                        1
+                        2
                 );
             } else {
                 memcpy( mem + 17 + offset2 * 3,
@@ -253,51 +333,6 @@ unsigned char* resize_bin(unsigned char* bin, long filesize, int new_x, int new_
             }
         }
     }
-
-
-/*
-
-    for (int y=0; y < new_y; y++) {
-        for (int x=0; x < new_x; x++) {
-            *(uint16_t*)( mem + 17 + ( x * y * 3) ) = (uint16_t)0x010C;
-            *(uint8_t*)( mem + 17 + ( x * y * 3) + 2 ) = (uint8_t)0x04;
-        }
-    }
-
-    for (int y=0; y < size_y; y++) {
-        for (int x=0; x < size_x; x++) {
-
-            *( mem + (unsigned int)(17 + x * 3 + ( new_x  * y * 3)) ) =
-            *( bin + (unsigned int)(17 + x * 3 + ( size_x * y * 3)) );
-
-            *( mem + (unsigned int)(17 + x * 3 + ( new_x  * y * 3) + 1) ) =
-            *( bin + (unsigned int)(17 + x * 3 + ( size_x * y * 3) + 1) );
-
-            *( mem + (unsigned int)(17 + x * 3 + ( new_x  * y * 3) + 2) ) =
-            *( bin + (unsigned int)(17 + x * 3 + ( size_x * y * 3) + 2) );
-
-            *( mem + (unsigned int)(17 + x * 2 + ( new_x  * y * 2) + ( new_x  * new_y  * 3)) ) =
-            *( bin + (unsigned int)(17 + x * 2 + ( size_x * y * 2) + ( size_x * size_y * 3)) );
-
-            *( mem + (unsigned int)(17 + x * 2 + ( new_x  * y * 2) + ( new_x  * new_y  * 3) + 1) ) =
-            *( bin + (unsigned int)(17 + x * 2 + ( size_x * y * 2) + ( size_x * size_y * 3) + 1) );
-
-            *(uint16_t*)( mem + 17 + x * 3 + ( new_x  * y * 3) ) =
-            *(uint16_t*)( bin + 17 + x * 3 + ( size_x * y * 3) );
-
-            *(uint8_t*) ( mem + 17 + x * 3 + ( new_x  * y * 3) + 2 ) =
-            *(uint8_t*) ( bin + 17 + x * 3 + ( size_x * y * 3) + 2);
-
-            *(uint16_t*)( mem + 17 + x * 2 + ( new_x  * y * 2) + ( new_x  * new_y  * 3) ) =
-            *(uint16_t*)( bin + 17 + x * 2 + ( size_x * y * 2) + ( size_x * size_y * 3) );
-
-//            *(uint16_t*)( mem + 17 + ( x * y * 3) ) = 0xFFFF;
-//            *(uint8_t*)( mem + 17 + ( x * y * 3) + 2 ) = 0x00;
-
-        }
-
-    }
-*/
 
 /*
     int to_x = size_x, to_y = size_y;
@@ -536,19 +571,19 @@ int make_bin( unsigned char* bin, long size ) {
 }
 
 
-int save_bin(unsigned char* bin, long filesize) {
+int save_bin(unsigned char* bin, long filesize, std::string filename) {
     FILE* f_ptr;
 
-    if ( ( f_ptr = fopen( "map.bin.new", "w" ) ) == NULL ) {
+    if ( ( f_ptr = fopen( filename.c_str(), "w" ) ) == NULL ) {
 
-        printf( "Error opening %s for writing.\n", "map.bin.new" );
+        printf( "Error opening %s for writing.\n", filename.c_str() );
         return -1;
 
     } else {
 
         size_t bytes = fwrite( bin, 1, filesize, f_ptr );
 
-        printf( "File %s %lu bytes written\n", "map.bin.new", bytes );
+        printf( "File %s %lu bytes written\n", filename.c_str(), bytes );
         fclose( f_ptr );
         return 0;
 

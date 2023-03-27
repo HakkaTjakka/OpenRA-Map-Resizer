@@ -34,7 +34,9 @@ int main(int argc, char ** argv) {
     sf::RenderTexture my_rendertexture;
 
     unsigned char* bin = NULL;
+    unsigned char* bin2 = NULL;
     long size;
+    long size2;
 
 //    std::map<int, struct Tileset> Tileset;
     std::map<int, int> Tileset;
@@ -43,6 +45,7 @@ int main(int argc, char ** argv) {
 
     if ( !(option == std::string() +"test") &&
          !(option == std::string() +"showbin") &&
+         !(option == std::string() +"insert") &&
          !(option == std::string() +"resize") ) {
 //        printf("Launching window.......%s %d\n",option.c_str(), option == "readbin" );
         launch_my_window();
@@ -55,14 +58,46 @@ int main(int argc, char ** argv) {
 
 //        main_window();
 
+
+    } else  if (option == "insert") {
+        if (argc<4) {
+            printf( "%s insert <path_to_map.bin> <path_from_map.bin>'\n", argv[0] );
+            return -2;
+        }
+        printf("Inserting %s into %s to map.bin.insert\n" ,argv[3], argv[2] );
+//        exit(0);
+
+        if ( ( size = main_readbin( argv[2], bin ) ) > 0 ) {
+            if ( ( size2 = main_readbin( argv[3], bin2 ) ) > 0 ) {
+
+                int ret = insert_bin( bin, bin2, size, size2 );
+                if ( ret == 0 ) {
+                    printf( "Error map-size vs. file-size\n" );
+                    return -1;
+                }
+                save_bin( bin, size, "map.bin.insert" );
+                if ( bin != NULL ) free( bin );
+                if ( bin2 != NULL ) free( bin2 );
+                printf("Don't forget to save/edit your map.yaml file(s) before/after!!!\n\n");
+                printf("If moving map.bin.resize, to free space for the insert, move within the in-game editor, map.yaml changes to\n\n");
+                printf("After insert merge resized+moved map.yaml with inserted map.yaml to fix coords.\n\n");
+            } else {
+                if ( bin != NULL ) free( bin );
+                if ( bin2 != NULL ) free( bin2 );
+                return size;
+            }
+        } else {
+            if ( bin != NULL ) free( bin );
+            return size;
+        }
     } else  if (option == "resize") {
         if (argc<5) {
-            printf( "%s readbin <path_to_map.bin> <size_x> <size_y>'\n", argv[0] );
+            printf( "%s resize <path_to_map.bin> <size_x> <size_y>'\n", argv[0] );
             return -2;
         }
         int size_x = atoi(argv[3]);
         int size_y = atoi(argv[4]);
-        printf("Converting %s to map.bin.new with size %dx%d\n" ,argv[2], size_x, size_y );
+        printf("Converting %s to map.bin.resize with size %dx%d\n" ,argv[2], size_x, size_y );
 //        exit(0);
 
         if ( ( size = main_readbin( argv[2], bin ) ) > 0 ) {
@@ -72,14 +107,12 @@ int main(int argc, char ** argv) {
                 printf( "Error map-size vs. file-size\n" );
                 return -1;
             }
-            save_bin( ret, 17 + 5 * size_x * size_y );
+            save_bin( ret, 17 + 5 * size_x * size_y, "map.bin.resize" );
             if ( bin != NULL ) free( bin );
             if ( ret != NULL ) free( ret );
             printf("Don't forget to change your map.yaml file to adapt size(s)!!!\n\n");
             printf("MapSize: %d,%d\n\n", size_x, size_y);
             printf("Bounds: 1,1,%d,%d\n\n", size_x-2, size_y-2);
-
-
         } else {
             if ( bin != NULL ) free( bin );
             return size;
@@ -101,7 +134,7 @@ int main(int argc, char ** argv) {
                 return ret;
             }
             make_bin( bin, size );
-            save_bin( bin, size );
+            save_bin( bin, size, "map.bin.readbin" );
             if ( bin != NULL ) free( bin );
 
         } else {
