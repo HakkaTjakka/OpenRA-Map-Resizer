@@ -1,0 +1,237 @@
+MapFormat: 12
+
+RequiresMod: ra
+
+Title: map1
+
+Author: Lad
+
+Tileset: DESERT
+
+MapSize: 96,96
+
+Bounds: 1,1,94,94
+
+Visibility: Lobby
+
+Categories: [BI-3.5.2]
+
+Players:
+	PlayerReference@Neutral:
+		Name: Neutral
+		OwnsWorld: True
+		NonCombatant: True
+		Faction: england
+	PlayerReference@Creeps:
+		Name: Creeps
+		NonCombatant: True
+		Faction: england
+		Enemies: Multi0, Multi1
+	PlayerReference@Multi0:
+		Name: Multi0
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi1:
+		Name: Multi1
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+
+Actors:
+	Actor2: mine
+		Owner: Neutral
+		Location: 13,42
+	Actor3: mine
+		Owner: Neutral
+		Location: 82,53
+	Actor6: mine
+		Owner: Neutral
+		Location: 12,47
+	Actor7: mine
+		Owner: Neutral
+		Location: 83,48
+	Actor8: mine
+		Owner: Neutral
+		Location: 13,52
+	Actor9: mine
+		Owner: Neutral
+		Location: 82,43
+	Actor10: mine
+		Owner: Neutral
+		Location: 14,56
+	Actor11: mine
+		Owner: Neutral
+		Location: 81,39
+	Actor28: tc01
+		Owner: Neutral
+		Location: 5,46
+	Actor29: tc01
+		Owner: Neutral
+		Location: 89,47
+	Actor30: t08
+		Owner: Neutral
+		Location: 87,39
+	Actor31: t08
+		Owner: Neutral
+		Location: 7,55
+	Actor32: tc01
+		Owner: Neutral
+		Location: 74,56
+	Actor34: tc01
+		Owner: Neutral
+		Location: 20,37
+	Actor27: sbag
+		Owner: Neutral
+		Location: 33,48
+	Actor33: sbag
+		Owner: Neutral
+		Location: 34,48
+	Actor35: brl3
+		Owner: Neutral
+		Location: 33,49
+	Actor36: oilb
+		Owner: Neutral
+		Location: 33,50
+	Actor37: sbag
+		Owner: Neutral
+		Location: 36,50
+	Actor38: sbag
+		Owner: Neutral
+		Location: 36,51
+	Actor39: sbag
+		Owner: Neutral
+		Location: 34,53
+	Actor40: sbag
+		Owner: Neutral
+		Location: 35,53
+	Actor24: sbag
+		Owner: Neutral
+		Location: 60,42
+	Actor25: sbag
+		Owner: Neutral
+		Location: 61,42
+	Actor26: sbag
+		Owner: Neutral
+		Location: 59,44
+	Actor41: oilb
+		Owner: Neutral
+		Location: 61,44
+	Actor42: sbag
+		Owner: Neutral
+		Location: 59,45
+	Actor43: brl3
+		Owner: Neutral
+		Location: 62,46
+	Actor44: sbag
+		Owner: Neutral
+		Location: 61,47
+	Actor45: sbag
+		Owner: Neutral
+		Location: 62,47
+	Actor50: tc01
+		Owner: Neutral
+		Location: 37,78
+	Actor51: t08
+		Owner: Neutral
+		Location: 41,74
+	Actor52: tc01
+		Owner: Neutral
+		Location: 41,67
+	Actor53: t08
+		Owner: Neutral
+		Location: 45,70
+	Actor46: mine
+		Owner: Neutral
+		Location: 67,74
+	Actor47: mine
+		Owner: Neutral
+		Location: 61,76
+	Actor48: mine
+		Owner: Neutral
+		Location: 34,19
+	Actor49: mine
+		Owner: Neutral
+		Location: 28,21
+	Actor54: mine
+		Owner: Neutral
+		Location: 32,71
+	Actor55: mine
+		Owner: Neutral
+		Location: 29,76
+	Actor56: tc01
+		Owner: Neutral
+		Location: 35,74
+	Actor57: tc01
+		Owner: Neutral
+		Location: 56,15
+	Actor58: mine
+		Owner: Neutral
+		Location: 66,19
+	Actor59: t08
+		Owner: Neutral
+		Location: 53,21
+	Actor60: mine
+		Owner: Neutral
+		Location: 63,24
+	Actor61: t08
+		Owner: Neutral
+		Location: 49,25
+	Actor62: tc01
+		Owner: Neutral
+		Location: 52,26
+	Actor63: tc01
+		Owner: Neutral
+		Location: 63,79
+	Actor64: tc01
+		Owner: Neutral
+		Location: 29,14
+	Actor65: t08
+		Owner: Neutral
+		Location: 20,13
+	Actor66: t08
+		Owner: Neutral
+		Location: 73,82
+	Actor67: tc01
+		Owner: Neutral
+		Location: 80,65
+	Actor68: tc01
+		Owner: Neutral
+		Location: 14,28
+	Actor69: t04
+		Owner: Neutral
+		Location: 42,55
+	Actor70: t09
+		Owner: Neutral
+		Location: 53,39
+	Actor71: t04
+		Owner: Neutral
+		Location: 78,71
+	Actor72: t04
+		Owner: Neutral
+		Location: 17,21
+	Actor73: t09
+		Owner: Neutral
+		Location: 60,6
+	Actor74: t09
+		Owner: Neutral
+		Location: 36,88
+	Actor75: t09
+		Owner: Neutral
+		Location: 15,70
+	Actor76: t09
+		Owner: Neutral
+		Location: 81,24
+	Actor77: tc01
+		Owner: Neutral
+		Location: 29,53
+	Actor78: tc01
+		Owner: Neutral
+		Location: 64,40
+	Actor81: mpspawn
+		Owner: Neutral
+		Location: 20,47
+	Actor79: mpspawn
+		Owner: Neutral
+		Location: 75,48
+

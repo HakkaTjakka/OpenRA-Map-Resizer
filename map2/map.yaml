@@ -1,0 +1,402 @@
+MapFormat: 12
+
+RequiresMod: ra
+
+Title: map2
+
+Author: Godot, Green Giant
+
+Tileset: DESERT
+
+MapSize: 144,336
+
+Bounds: 1,1,142,334
+
+Visibility: Lobby
+
+Categories: [BI-3.5.2]
+
+Players:
+	PlayerReference@Neutral:
+		Name: Neutral
+		OwnsWorld: True
+		NonCombatant: True
+		Faction: Random
+	PlayerReference@Creeps:
+		Name: Creeps
+		NonCombatant: True
+		Faction: Random
+		Enemies: Multi0, Multi1, Multi2, Multi3, Multi4, Multi5, Multi6, Multi7, Multi8, Multi9
+	PlayerReference@Multi0:
+		Name: Multi0
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi1:
+		Name: Multi1
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi2:
+		Name: Multi2
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi3:
+		Name: Multi3
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi4:
+		Name: Multi4
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi5:
+		Name: Multi5
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi6:
+		Name: Multi6
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi7:
+		Name: Multi7
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi8:
+		Name: Multi8
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi9:
+		Name: Multi9
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+
+Actors:
+	Actor68: mine
+		Owner: Neutral
+		Location: 40,114
+	Actor69: mine
+		Owner: Neutral
+		Location: 123,114
+	Actor70: t08
+		Owner: Neutral
+		Location: 26,115
+	Actor71: mine
+		Owner: Neutral
+		Location: 36,115
+	Actor72: mine
+		Owner: Neutral
+		Location: 44,115
+	Actor73: mine
+		Owner: Neutral
+		Location: 33,116
+	Actor74: mine
+		Owner: Neutral
+		Location: 125,116
+	Actor75: mine
+		Owner: Neutral
+		Location: 40,118
+	Actor76: mine
+		Owner: Neutral
+		Location: 35,119
+	Actor77: mine
+		Owner: Neutral
+		Location: 44,119
+	Actor78: t08
+		Owner: Neutral
+		Location: 29,122
+	Actor91: mine
+		Owner: Neutral
+		Location: 36,122
+	Actor95: mine
+		Owner: Neutral
+		Location: 44,122
+	Actor97: rock4
+		Owner: Neutral
+		Location: 69,122
+	Actor98: t08
+		Owner: Neutral
+		Location: 71,122
+	Actor105: mine
+		Owner: Neutral
+		Location: 40,123
+	Actor106: v21
+		Owner: Neutral
+		Location: 66,123
+	Actor107: v35
+		Owner: Neutral
+		Location: 72,124
+	Actor108: v24
+		Owner: Neutral
+		Location: 70,125
+	Actor109: oilb
+		Owner: Neutral
+		Location: 86,125
+	Actor110: oilb
+		Owner: Neutral
+		Location: 88,125
+	Actor111: mpspawn
+		Owner: Neutral
+		Location: 123,125
+	Actor112: tc01
+		Owner: Neutral
+		Location: 38,125
+	Actor116: v34
+		Owner: Neutral
+		Location: 74,126
+	Actor120: tc01
+		Owner: Neutral
+		Location: 67,126
+	Actor121: oilb
+		Owner: Neutral
+		Location: 87,128
+	Actor122: rock6
+		Owner: Neutral
+		Location: 59,129
+	Actor123: mpspawn
+		Owner: Neutral
+		Location: 39,132
+	Actor124: mine
+		Owner: Neutral
+		Location: 122,135
+	Actor125: rock5
+		Owner: Neutral
+		Location: 56,136
+	Actor126: mine
+		Owner: Neutral
+		Location: 120,138
+	Actor127: mine
+		Owner: Neutral
+		Location: 30,142
+	Actor128: mine
+		Owner: Neutral
+		Location: 126,142
+	Actor129: rock4
+		Owner: Neutral
+		Location: 56,143
+	Actor130: mine
+		Owner: Neutral
+		Location: 120,143
+	Actor131: mpspawn
+		Owner: Neutral
+		Location: 19,144
+	Actor132: mine
+		Owner: Neutral
+		Location: 27,147
+	Actor133: mine
+		Owner: Neutral
+		Location: 36,147
+	Actor134: mine
+		Owner: Neutral
+		Location: 31,149
+	Actor135: oilb
+		Owner: Neutral
+		Location: 84,150
+	Actor136: mine
+		Owner: Neutral
+		Location: 35,152
+	Actor137: oilb
+		Owner: Neutral
+		Location: 86,152
+	Actor138: mine
+		Owner: Neutral
+		Location: 31,154
+	Actor139: oilb
+		Owner: Neutral
+		Location: 83,154
+	Actor140: mpspawn
+		Owner: Neutral
+		Location: 18,155
+	Actor141: mine
+		Owner: Neutral
+		Location: 27,156
+	Actor142: oilb
+		Owner: Neutral
+		Location: 78,156
+	Actor143: oilb
+		Owner: Neutral
+		Location: 81,157
+	Actor144: mine
+		Owner: Neutral
+		Location: 25,163
+	Actor145: mine
+		Owner: Neutral
+		Location: 18,167
+	Actor146: mine
+		Owner: Neutral
+		Location: 125,167
+	Actor147: mine
+		Owner: Neutral
+		Location: 118,169
+	Actor148: oilb
+		Owner: Neutral
+		Location: 61,173
+	Actor149: oilb
+		Owner: Neutral
+		Location: 63,175
+	Actor150: mine
+		Owner: Neutral
+		Location: 115,175
+	Actor151: oilb
+		Owner: Neutral
+		Location: 60,177
+	Actor152: mpspawn
+		Owner: Neutral
+		Location: 124,178
+	Actor153: oilb
+		Owner: Neutral
+		Location: 55,179
+	Actor154: oilb
+		Owner: Neutral
+		Location: 58,180
+	Actor155: mine
+		Owner: Neutral
+		Location: 115,180
+	Actor156: mine
+		Owner: Neutral
+		Location: 111,182
+	Actor157: mine
+		Owner: Neutral
+		Location: 115,184
+	Actor158: rock2
+		Owner: Neutral
+		Location: 75,186
+	Actor159: mine
+		Owner: Neutral
+		Location: 110,186
+	Actor160: mine
+		Owner: Neutral
+		Location: 114,188
+	Actor161: mine
+		Owner: Neutral
+		Location: 23,189
+	Actor162: mpspawn
+		Owner: Neutral
+		Location: 124,189
+	Actor163: mine
+		Owner: Neutral
+		Location: 17,190
+	Actor164: rock2
+		Owner: Neutral
+		Location: 100,193
+	Actor165: mine
+		Owner: Neutral
+		Location: 114,193
+	Actor166: mine
+		Owner: Neutral
+		Location: 17,195
+	Actor167: mine
+		Owner: Neutral
+		Location: 23,196
+	Actor168: tc01
+		Owner: Neutral
+		Location: 88,196
+	Actor169: tc01
+		Owner: Neutral
+		Location: 91,197
+	Actor170: mpspawn
+		Owner: Neutral
+		Location: 103,198
+	Actor171: rock5
+		Owner: Neutral
+		Location: 83,201
+	Actor172: oilb
+		Owner: Neutral
+		Location: 53,204
+	Actor173: oilb
+		Owner: Neutral
+		Location: 55,204
+	Actor174: t08
+		Owner: Neutral
+		Location: 70,204
+	Actor175: rock1
+		Owner: Neutral
+		Location: 80,203
+	Actor176: mpspawn
+		Owner: Neutral
+		Location: 19,206
+	Actor177: v25
+		Owner: Neutral
+		Location: 72,206
+	Actor178: oilb
+		Owner: Neutral
+		Location: 54,207
+	Actor179: v26
+		Owner: Neutral
+		Location: 68,207
+	Actor180: v31
+		Owner: Neutral
+		Location: 75,208
+	Actor181: v23
+		Owner: Neutral
+		Location: 69,209
+	Actor182: v32
+		Owner: Neutral
+		Location: 72,209
+	Actor183: mine
+		Owner: Neutral
+		Location: 103,213
+	Actor184: tc01
+		Owner: Neutral
+		Location: 68,213
+	Actor185: tc01
+		Owner: Neutral
+		Location: 113,213
+	Actor186: mine
+		Owner: Neutral
+		Location: 99,215
+	Actor187: mine
+		Owner: Neutral
+		Location: 106,215
+	Actor188: mine
+		Owner: Neutral
+		Location: 111,215
+	Actor189: t08
+		Owner: Neutral
+		Location: 116,216
+	Actor190: mine
+		Owner: Neutral
+		Location: 102,217
+	Actor191: mine
+		Owner: Neutral
+		Location: 98,219
+	Actor192: mine
+		Owner: Neutral
+		Location: 109,219
+	Actor193: mine
+		Owner: Neutral
+		Location: 18,220
+	Actor194: mine
+		Owner: Neutral
+		Location: 101,220
+	Actor195: mine
+		Owner: Neutral
+		Location: 106,220
+	Actor196: mine
+		Owner: Neutral
+		Location: 115,220
+	Actor197: mine
+		Owner: Neutral
+		Location: 20,221
+	Actor198: rock6
+		Owner: Neutral
+		Location: 118,220
+	Actor199: mpspawn
+		Owner: Neutral
+		Location: 20,47
+	Actor200: mpspawn
+		Owner: Neutral
+		Location: 75,48
+
+Rules: bi-rules-ERCC21andBCC11.yaml, bi-rules-balance.yaml, bi-rules-briefing.yaml, bi-rules-lobby.yaml
+
+Sequences: bi-sequences-ERCC2.yaml, bi-sequences.yaml
+
+Notifications: bi-notifications.yaml
