@@ -7,6 +7,7 @@ Syntax:
 Resizes the map map.bin to NEW_X_SIZE x NEW_Y_SIZE
 map.yaml has to be edited manually to correct new x and y size at MapSize: and Bounds:
 
+
 Syntax:
 ./red_alert insert <first path to map.bin> <second path to map.bin>
 Inserts second map.bin into first map.bin
@@ -33,4 +34,11 @@ Example:
 results into file: map.bin.insert
 This is the resulting map.bin
 Now you have to manually edit the according map.yaml of the one you inserted into after moving it down with OpenRA map editor, and merge it with the map.yaml of the map inserted. You might add some player locations. If lots of actors help yourself.
+
+
+Insert part of one map into another map. The location of the source will be placed at exact the same location of the destination map.
+Syntax: insert-range
+./red_alert insert-range <first path to map.bin> <second path to map.bin> <left> <top> <width> <height>
+Example:
+./red_alert insert-range map1/map.bin map2/map.bin 200 0 130 130
 ```
