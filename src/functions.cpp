@@ -157,6 +157,88 @@ int edit_bin(unsigned char* bin, long filesize) {
     return 0;
 }
 
+int insert_bin_range(unsigned char* bin, unsigned char* bin2, long filesize, long filesize2, int left, int top, int width, int height  ) {
+    for ( int n=0; n<17; n++ ) {
+        if ( n>0 && n<17 ) printf(" ");
+        printf("%02X", (unsigned char)bin[n]);
+    }
+    printf("\n");
+
+    uint16_t size_x = *(uint16_t*)(bin + 1);
+    uint16_t size_y = *(uint16_t*)(bin + 3);
+
+    printf("size_x=%4d (%04X)\nsize_y=%4d (%04X)\n", size_x, size_x, size_y, size_y);
+
+    int bytes=17 + 5 * size_x * size_y;
+
+    if ( filesize != bytes ) {
+
+        printf( "bin=( %d x %d ) x 5 + 17 = %d bytes. FAIL!!!\n", size_x, size_y, bytes );
+
+        printf( "Filesize does not match map resolution.\n" );
+
+        return 0;
+
+    } else {
+
+        printf( "bin=( %d x %d ) x 5 + 17 = %d bytes. OK!\n", size_x, size_y, bytes );
+
+    }
+
+    for ( int n=0; n<17; n++ ) {
+        if ( n>0 && n<17 ) printf(" ");
+        printf("%02X", (unsigned char)bin2[n]);
+    }
+    printf("\n");
+
+    uint16_t size_x2 = *(uint16_t*)(bin2 + 1);
+    uint16_t size_y2 = *(uint16_t*)(bin2 + 3);
+
+    printf("size_x=%4d (%04X)\nsize_y=%4d (%04X)\n", size_x2, size_x2, size_y2, size_y2);
+
+    int bytes2=17 + 5 * size_x2 * size_y2;
+
+    if ( filesize2 != bytes2 ) {
+
+        printf( "bin=( %d x %d ) x 5 + 17 = %d bytes. FAIL!!!\n", size_x2, size_y2, bytes2 );
+
+        printf( "Filesize does not match map resolution.\n" );
+
+        return 0;
+
+    } else {
+
+        printf( "bin=( %d x %d ) x 5 + 17 = %d bytes. OK!\n", size_x2, size_y2, bytes2 );
+
+    }
+
+    int offset;
+    int offset2;
+
+
+    for (int yy = top; yy < top + height; yy++ ) {
+        for ( int xx = left; xx < left + width; xx++ ) {
+
+            offset  = yy + size_y * xx;
+            offset2 = yy + size_y2 * xx;
+
+            if ( xx < size_x && yy < size_y ) {
+                memcpy( bin  + 17 + offset  * 3,
+                        bin2 + 17 + offset2 * 3,
+                        3
+                );
+                memcpy( bin  + 17 + offset  * 2 + ( size_x  * size_y  ) * 3,
+                        bin2 + 17 + offset2 * 2 + ( size_x2 * size_y2 ) * 3,
+                        2
+                );
+            }
+        }
+    }
+
+
+    return 1;
+}
+
 int insert_bin(unsigned char* bin, unsigned char* bin2, long filesize, long filesize2 ) {
     for ( int n=0; n<17; n++ ) {
         if ( n>0 && n<17 ) printf(" ");
@@ -330,6 +412,11 @@ unsigned char* resize_bin(unsigned char* bin, long filesize, int new_x, int new_
                         0,
                         2
                 );
+            }
+            uint16_t tile_main = *(uint16_t*)(mem + 17 + offset2  * 3);
+            if ( tile_main == 0x0002) {
+                *(uint16_t*)(mem + 17 + offset  * 3)     = 0x0001;
+                *(uint8_t*) (mem + 17 + offset  * 3 + 2) = 0x00;
             }
         }
     }

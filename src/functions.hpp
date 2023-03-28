@@ -63,8 +63,7 @@ int save_bin(unsigned char* bin, long size, std::string filename);
 int main_readtileset( char* filename, sf::RenderTexture &my_rendertexture, std::map<int, int> &Tileset );
 unsigned char* resize_bin(unsigned char* bin, long filesize, int new_x, int new_y );
 int insert_bin(unsigned char* bin, unsigned char* bin2, long filesize, long filesize2);
-
-
+int insert_bin_range(unsigned char* bin, unsigned char* bin2, long filesize, long filesize2, int top, int left, int width, int height );
 
 struct Drawing {
     sf::RenderWindow window;
