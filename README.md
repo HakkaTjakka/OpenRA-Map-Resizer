@@ -34,7 +34,9 @@ Example:
 ./red_alert insert map2/map.bin map1/map.bin
 results into file: map.bin.insert
 This is the resulting map.bin
-Now you have to manually edit the according map.yaml of the one you inserted into after moving it down with OpenRA map editor, and merge it with the map.yaml of the map inserted. You might add some player locations. If lots of actors help yourself.
+Now you have to manually edit the according map.yaml of the one you inserted into after moving it down with OpenRA map editor,
+and merge it with the map.yaml of the map inserted. You might add some player locations.
+If lots of actors help yourself.
 
 INSERT PART OF MAP INTO ANOTHER MAP: 
 Insert part of one map into another map. The location of the source will be placed at exact the same location of the destination map.
